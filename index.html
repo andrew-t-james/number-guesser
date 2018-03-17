@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/styles/main.css">
+  <title>Number Guesser</title>
+</head>
+
+<body>
+  <header class="header" role="banner">
+    <h1 class="header__heading">
+      <span class="header__heading--pink">Number</span> Guesser
+    </h1>
+  </header>
+  <main class="container main" role="main">
+    <section class="section-1">
+      <form id="guess-form" role="form">
+        <input type="number" min="1" max="100" step="1" id="form-input" placeholder="Enter your guess" autocomplete="off" aria-label="Number Input">
+        <div class="form-buttons">
+          <input id="guess-button" type="button" role="button" value="Guess" class="btn" disabled>
+          <input id="clear-button" type="button" role="button" value="Clear" class="btn" disabled>
+        </div>
+      </form>
+    </section>
+    <article class="section-2">
+      <p class="section-2__text--paragraph" id="announcement">Guess a number between 1 and 100</p>
+      <span class="section-2__text--guess" id="number-guess"></span>
+      <p class="section-2__text--paragraph" id="range-guess"></p>
+    </article>
+    <article class="section-3">
+      <button id="reset-button" type="button" class="btn reset-btn" disabled>Reset</button>
+    </article>
+  </main>
+  <script src="./assets/scripts/main.js"></script>
+</body>
+
+</html>
