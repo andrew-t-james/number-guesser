@@ -2,8 +2,9 @@
 
 :root {
   --primary-pink: #eb008b;
-  --secondary-pink: #ed458b;
   /* Original Pink */
+  /* --secondary-pink: #ed458b; */
+  /* preferable pink for aria puposes level AA*/
   --secondary-pink: #ef4d8f;
   --dark-background: #404041;
   --button-background: #929497;
@@ -92,14 +93,8 @@ form input[type='number'] {
   outline: #757575;
 }
 
-.form-buttons {
-  width: 50rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+form input[role='button'] {
+  margin: 0 5rem;
 }
 
 .btn {
@@ -119,17 +114,17 @@ form input[type='number'] {
   box-shadow: 2px 4px 8px 0px rgba(46, 61, 73, 0.2);
   -webkit-transition: 0.1s all ease-in-out;
   transition: 0.2s all ease-in-out;
+  text-align: center;
 }
 
 input[role='button']:disabled,
-/* input[type='button']:disabled, */
-
-button[type='button']:disabled {
+button:disabled {
   background: var(--primary-disabled-color);
   cursor: not-allowed;
+  text-align: center;
 }
 
-.btn:hover {
+.btn:hover(not:disabled) {
   background: var(--primary-pink);
 }
 
