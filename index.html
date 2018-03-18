@@ -20,20 +20,19 @@
   <main class="container main" role="main">
     <section class="section-1">
       <form id="guess-form" role="form">
-        <input type="number" min="1" max="100" step="1" maxlength="3" id="form-input" placeholder="Enter your guess" autocomplete="off"
-          aria-label="Number Input">
+        <input type="number" min="1" max="100" step="1" id="form-input" placeholder="Enter your guess" autocomplete="off" aria-label="Number Input">
         <input id="guess-button" role="button" type="button" value="Guess" class="btn" aria-disabled="true" disabled>
         <input id="clear-button" role="button" type="button" value="Clear" class="btn" aria-disabled="true" disabled>
       </form>
     </section>
-    <article class="section-2">
+    <section class="section-2">
       <p class="section-2__text--paragraph" id="announcement">Guess a number between 1 and 100</p>
       <span class="section-2__text--guess" id="number-guess"></span>
       <p class="section-2__text--paragraph" id="range-guess"></p>
-    </article>
-    <article class="section-3">
+    </section>
+    <section class="section-3">
       <button id="reset-button" class="btn reset-btn" aria-disabled="true" disabled>Reset</button>
-    </article>
+    </section>
   </main>
   <script src="https://cdn.jsdelivr.net/npm/siiimple-toast/dist/siiimple-toast.min.js"></script>
   <script src="./assets/scripts/main.js"></script>

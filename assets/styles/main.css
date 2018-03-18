@@ -132,6 +132,9 @@ button:disabled {
 
 .section-2 {
   margin-bottom: 3rem;
+  font-size: 13rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .section-2__text--paragraph {
@@ -142,7 +145,11 @@ button:disabled {
   height: 1.7em;
   font-weight: 300;
   font-size: 25rem;
-  color: var(--primary-pink)
+  color: var(--primary-pink);
+}
+
+.section-2 span {
+  text-overflow: ellipsis;
 }
 
 .reset-btn {

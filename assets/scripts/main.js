@@ -1,5 +1,5 @@
 (() => {
-  const inputForm = document.getElementById('form-input');
+  const formInput = document.getElementById('form-input');
   const guessButton = document.getElementById('guess-button');
   const guessForm = document.getElementById('guess-form');
   const clearButton = document.getElementById('clear-button');
@@ -10,19 +10,23 @@
   let number = Math.floor(Math.random() * 100) + 1;
 
   /**
-   * @function disableEnableButtons
-   * @description toggle form inputs based on form state
+   * @function enableButtons
+   * @description enables form buttons and reset button
    */
-  const disableEnableButtons = () => {
-    if (!inputForm.value.length) {
-      guessButton.setAttribute('disabled', true);
-      clearButton.setAttribute('disabled', true);
-    }
-    if (inputForm.value >= 1 && inputForm.value <= 100) {
-      guessButton.removeAttribute('disabled');
-      resetButton.removeAttribute('disabled');
-      clearButton.removeAttribute('disabled');
-    }
+  const enableButtons = () => {
+    guessButton.removeAttribute('disabled');
+    resetButton.removeAttribute('disabled');
+    clearButton.removeAttribute('disabled');
+  };
+
+  /**
+   * @function disableButtons
+   * @description disables guess button and clear button
+   */
+  const disableButtons = () => {
+    guessButton.setAttribute('disabled', true);
+    clearButton.setAttribute('disabled', true);
+    resetButton.setAttribute('disabled', true);
   };
 
   /**
@@ -30,18 +34,18 @@
    * @description resets game back to initial state
    */
   const resetGame = () => {
-    inputForm.value = '';
+    formInput.value = '';
     announcement.innerText = 'Guess a number between 1 and 100';
     numberGuess.innerText = '';
     rangeGuess.innerText = '';
     number = Math.floor(Math.random() * 100) + 1;
-    guessButton.setAttribute('disabled', true);
+    disableButtons();
     resetButton.setAttribute('disabled', true);
   };
 
   /**
    * @function countDown
-   * @description sets an one seconds interval for countdown to display in UI
+   * @description sets an one second interval for countdown to display in UI
    * @param {Number} i initiate setInterval and display countdown in UI
    */
   const countDown = i => {
@@ -65,9 +69,9 @@
    * @description checks for win, if number matches guess winning message is displayed and game is rest
    */
   const checkWin = () => {
-    const guess = inputForm.value;
-    if (number === parseInt(guess)) {
-      inputForm.value = '';
+    const guess = parseInt(formInput.value);
+    if (number === guess) {
+      formInput.value = '';
       announcement.innerText = '';
       numberGuess.innerText = 'BOOM!';
       rangeGuess.innerText = '';
@@ -76,35 +80,52 @@
       announcement.innerText = 'Your last guess was';
       numberGuess.innerText = guess;
       numberGuess.style.visibility = 'visible';
-      rangeGuess.innerText = guess < number ? 'That is to low!' : 'That is to high!';
-      inputForm.value = '';
+      // ternary to check if number is in range gives error if out of range other wise shows hints about guess
+      rangeGuess.innerText =
+        guess < 0 || guess > 100
+          ? 'That Number is out of range please enter a valid number'
+          : guess < number ? 'That is to low!' : 'That is to high!';
+      formInput.value = '';
     }
   };
 
   guessButton.addEventListener('click', () => {
+    // on click check for a win and disable appropriate buttons
     checkWin();
-    disableEnableButtons();
-    // guessButton.setAttribute('disabled', true);
+    disableButtons();
   });
-
-  inputForm.addEventListener('keyup', () => disableEnableButtons());
 
   clearButton.addEventListener('click', () => {
-    inputForm.value = '';
-    disableEnableButtons();
-    // guessButton.setAttribute('disabled', true);
+    // on click clear input field and disable all appropriate buttons
+    formInput.value = '';
+    disableButtons();
   });
 
-  guessForm.addEventListener('keypress', event => {
-    if (event.keyCode === 13 && (inputForm.value >= 1 && inputForm.value <= 100)) {
-      event.preventDefault();
-      disableEnableButtons();
+  formInput.addEventListener('change', () => {
+    // on change event enable all buttons
+    enableButtons();
+  });
+
+  formInput.addEventListener('keypress', e => {
+    // prevent e from being entered in number input
+    if (e.which === 101) {
+      e.preventDefault();
+    }
+    enableButtons();
+  });
+
+  guessForm.addEventListener('keypress', e => {
+    // if user presses enter key check for win disable buttons and prevent default form behavior
+    if (e.which === 13) {
+      e.preventDefault();
+      disableButtons();
       checkWin();
     }
   });
 
   resetButton.addEventListener('click', () => {
-    disableEnableButtons();
+    // rests the game and disables all buttons
+    disableButtons();
     resetGame();
   });
 })();
