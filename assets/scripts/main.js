@@ -55,10 +55,7 @@
    * @param {Number} i initiate setInterval and display countdown in UI
    */
   const countDown = i => {
-    /**
-     * @function int
-     * @description used to clear Interval so that integer can be set and cleared on every win
-     */
+    // used to clear Interval so that integer can be set and cleared on every win
     const int = setInterval(() => {
       announcement.innerText = 'New Game begins in:';
       numberGuess.innerText = i;
@@ -88,8 +85,8 @@
       numberGuess.style.visibility = 'visible';
       // ternary to check if number is in range gives error if out of range other wise shows hints about guess
       rangeGuess.innerText =
-        guess < 0 || guess > 100
-          ? 'That Number is out of range please enter a valid number'
+        guess < 0 || guess > 100 || isNaN(guess)
+          ? 'That Number is invalid please enter a number from 0 to 100'
           : guess < number ? 'That is to low!' : 'That is to high!';
       formInput.value = '';
     }
