@@ -86,8 +86,8 @@
       // ternary to check if number is in range gives error if out of range other wise shows hints about guess
       rangeGuess.innerText =
         guess < 0 || guess > 100 || isNaN(guess)
-          ? 'That Number is invalid please enter a number from 0 to 100'
-          : guess < number ? 'That is to low!' : 'That is to high!';
+          ? `That guess of ${guess} is invalid please enter a number from 0 to 100`
+          : guess < number ? 'That is to low' : 'That is to high';
       formInput.value = '';
     }
   };
@@ -110,7 +110,7 @@
   });
 
   formInput.addEventListener('keypress', e => {
-    // prevent e from being entered in number input
+    // prevent 'e' from being entered in number input
     if (e.which === 101) {
       e.preventDefault();
     }

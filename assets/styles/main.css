@@ -86,7 +86,7 @@ form input[type='number'] {
   display: block;
   color: #757575;
   width: 50rem;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
   height: 4.3rem;
   font-size: 2rem;
   padding: .5rem;
@@ -159,7 +159,7 @@ button:disabled {
 #range-guess,
 #announcement {
   height: 3vh;
-  margin-bottom: 3rem;
+  margin-bottom: 6rem;
 }
 
 #announcement {
