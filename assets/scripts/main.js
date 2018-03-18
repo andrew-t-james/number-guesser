@@ -17,6 +17,9 @@
     guessButton.removeAttribute('disabled');
     resetButton.removeAttribute('disabled');
     clearButton.removeAttribute('disabled');
+    guessButton.removeAttribute('aria-disabled');
+    resetButton.removeAttribute('aria-disabled');
+    clearButton.removeAttribute('aria-disabled');
   };
 
   /**
@@ -27,6 +30,9 @@
     guessButton.setAttribute('disabled', true);
     clearButton.setAttribute('disabled', true);
     resetButton.setAttribute('disabled', true);
+    guessButton.setAttribute('aria-disabled', true);
+    clearButton.setAttribute('aria-disabled', true);
+    resetButton.setAttribute('aria-disabled', true);
   };
 
   /**
