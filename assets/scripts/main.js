@@ -9,7 +9,7 @@
   var numberGuess = document.querySelector('#number-guess');
   var rangeGuess = document.querySelector('#range-guess');
   var announcement = document.querySelector('#announcement');
-  var allButtons = document.querySelectorAll('button, input[type=button]');
+  var buttonList = document.querySelectorAll('button, input[type=button]');
   var number = Math.floor(Math.random() * 100) + 1;
 
   /**
@@ -17,9 +17,9 @@
    * @description enables form buttons and reset button
    */
   function enableButtons() {
-    for (var i = 0; i < allButtons.length; i++) {
-      allButtons[i].removeAttribute('disabled');
-      allButtons[i].setAttribute('aria-disabled', false);
+    for (var i = 0; i < buttonList.length; i++) {
+      buttonList[i].removeAttribute('disabled');
+      buttonList[i].setAttribute('aria-disabled', false);
     }
   }
 
@@ -28,9 +28,9 @@
    * @description disables guess button and clear button
    */
   function disableButtons() {
-    for (var i = 0; i < allButtons.length; i++) {
-      allButtons[i].setAttribute('disabled', 'disabled');
-      allButtons[i].setAttribute('aria-disabled', true);
+    for (var i = 0; i < buttonList.length; i++) {
+      buttonList[i].setAttribute('disabled', 'disabled');
+      buttonList[i].setAttribute('aria-disabled', true);
     }
   }
 
