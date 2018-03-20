@@ -16,68 +16,68 @@
    * @function enableButtons
    * @description enables form buttons and reset button
    */
-  var enableButtons = function enableButtons() {
+  function enableButtons() {
     for (var i = 0; i < allButtons.length; i++) {
       allButtons[i].removeAttribute('disabled');
       allButtons[i].setAttribute('aria-disabled', false);
     }
-  };
+  }
 
   /**
    * @function disableButtons
    * @description disables guess button and clear button
    */
-  var disableButtons = function disableButtons() {
+  function disableButtons() {
     for (var i = 0; i < allButtons.length; i++) {
-      allButtons[i].setAttribute('disabled', true);
+      allButtons[i].setAttribute('disabled', 'disabled');
       allButtons[i].setAttribute('aria-disabled', true);
     }
-  };
+  }
 
   /**
    * @function clearText
    * @param {DOElement} clears elements text from inputs inDom
    */
-  var clearText = function clearText(element) {
+  function clearText(element) {
     return element.innerText = '';
-  };
+  }
 
   /**
    * @function clearInput
    * @param {DOElement} clears clears input elements text from inDom
    */
-  var clearInput = function clearInput(element) {
+  function clearInput(element) {
     return element.value = '';
-  };
+  }
 
   /**
    *  @function setText
    * @param {DOElement} element from the DOM to set text on
    * @param {String} text string to be set in the DOM
    */
-  var setText = function setText(element, text) {
+  function setText(element, text) {
     return element.innerText = text;
-  };
+  }
 
   /**
    * @function resetGame
    * @description resets game back to initial state
    */
-  var resetGame = function resetGame() {
+  function resetGame() {
     setText(announcement, 'Guess a number between 1 and 100');
     clearInput(formInput);
     clearText(numberGuess);
     clearText(rangeGuess);
     number = Math.floor(Math.random() * 100) + 1;
     disableButtons();
-  };
+  }
 
   /**
    * @function countDown
    * @description sets an one second interval for countdown to display in UI
    * @param {Number} i initiate setInterval and display countdown in UI
    */
-  var countDown = function countDown(i) {
+  function countDown(i) {
     // int used to clear Interval so that integer can be set and cleared on every win
     var clearIntervalID = setInterval(function () {
       setText(announcement, 'New Game begins in:');
@@ -88,13 +88,13 @@
         resetGame();
       }
     }, 1000);
-  };
+  }
 
   /**
    * @function checkWin
    * @description checks for win, if number matches guess winning message is displayed and game is rest
    */
-  var checkWin = function checkWin() {
+  function checkWin() {
     var guess = parseInt(formInput.value);
     if (number === guess) {
       clearInput(formInput);
@@ -110,7 +110,7 @@
       rangeGuess.innerText = guess < 0 || guess > 100 || isNaN(guess) ? 'That guess of ' + guess + ' is invalid please enter a number from 0 to 100' : guess < number ? 'That is to low' : 'That is to high';
       clearInput(formInput);
     }
-  };
+  }
 
   guessButton.addEventListener('click', function () {
     // on click check for a win and disable appropriate buttons
