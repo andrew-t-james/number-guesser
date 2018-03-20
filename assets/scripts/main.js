@@ -19,6 +19,7 @@
   var enableButtons = function enableButtons() {
     for (var i = 0; i < allButtons.length; i++) {
       allButtons[i].removeAttribute('disabled');
+      allButtons[i].setAttribute('aria-disabled', false);
     }
   };
 
@@ -77,11 +78,11 @@
    * @param {Number} i initiate setInterval and display countdown in UI
    */
   var countDown = function countDown(i) {
-    // used to clear Interval so that integer can be set and cleared on every win
-    var int = setInterval(function () {
+    // int used to clear Interval so that integer can be set and cleared on every win
+    var clearIntervalID = setInterval(function () {
       setText(announcement, 'New Game begins in:');
       setText(numberGuess, i);
-      i-- || clearInterval(int);
+      i-- || clearInterval(clearIntervalID);
 
       if (i === -1) {
         resetGame();
@@ -105,7 +106,7 @@
       setText(numberGuess, 'Your last guess was');
       setText(numberGuess, guess);
       numberGuess.style.visibility = 'visible';
-      // ternary to check if number is in range gives error if out of range other wise shows hints about guess
+      // nested ternary to check if number is in range gives error if out of range other wise shows hints about guess
       rangeGuess.innerText = guess < 0 || guess > 100 || isNaN(guess) ? 'That guess of ' + guess + ' is invalid please enter a number from 0 to 100' : guess < number ? 'That is to low' : 'That is to high';
       clearInput(formInput);
     }
