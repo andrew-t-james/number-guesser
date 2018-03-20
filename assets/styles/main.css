@@ -144,7 +144,7 @@ button:disabled {
 .section-2__text--guess {
   height: 1.7em;
   font-weight: 300;
-  font-size: 25rem;
+  font-size: 20rem;
   color: var(--primary-pink);
 }
 
@@ -169,5 +169,4 @@ button:disabled {
 
 #number-guess {
   height: 1.7rem;
-  vertical-align: center;
 }
