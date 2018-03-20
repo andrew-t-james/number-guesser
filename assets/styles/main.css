@@ -115,6 +115,7 @@ form input[role='button'] {
   -webkit-transition: 0.1s all ease-in-out;
   transition: 0.2s all ease-in-out;
   text-align: center;
+  position: relative;
 }
 
 input[role='button']:disabled,
@@ -124,8 +125,13 @@ button:disabled {
   text-align: center;
 }
 
-.btn:hover(not:disabled) {
+.btn:hover:not([disabled]) {
   background: var(--primary-pink);
+}
+
+.btn:active:not([disabled]) {
+  box-shadow: none;
+  top: 2px;
 }
 
 /*----------  SECTION 2  ----------*/
