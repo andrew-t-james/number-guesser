@@ -82,11 +82,23 @@ html {
 }
 
 .guess-form__min-max {
+  display: none;
   position: relative;
   width: 50rem;
   margin: 0 auto;
   height: 8rem;
-  display: none;
+  animation: fadeIn 4s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 
 .guess-form__min-max--input {
@@ -189,6 +201,18 @@ button:disabled {
   width: 50rem;
 }
 
+/* WIN COUNT ASIDE */
+
+.win-container {
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: var(--dark-background);
+}
+
+.win-container__heading {
+  text-transform: uppercase;
+}
+
 #range-guess,
 #announcement {
   height: 2vh;
@@ -202,4 +226,8 @@ button:disabled {
 
 #number-guess {
   height: 1.7rem;
+}
+
+#win-count {
+  color: var(--primary-pink);
 }
