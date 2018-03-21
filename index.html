@@ -20,7 +20,14 @@
   <main class="container main" role="main">
     <section class="section-1">
       <form id="guess-form" role="form">
-        <input type="number" min="1" max="100" step="1" id="form-input" placeholder="Enter your guess" autocomplete="off" aria-label="Number Input, Enter guess between 0 and 100">
+        <div class="guess-form__min-max">
+          <input type="number" min="1" max="100" step="1" id="min-input" placeholder="Enter a Minimum" autocomplete="off" class="guess-form__min-max--input"
+            aria-label="Enter a number for a minimum amount.">
+          <input type="number" min="1" max="100" step="1" id="max-input" placeholder="Enter a Maximum" autocomplete="off" class="guess-form__min-max--input"
+            aria-label="Enter a number for a maximum amount.">
+        </div>
+        <input type="number" min="1" max="100" step="1" id="user-input" placeholder="Enter your guess" autocomplete="off" class="guess-form__user-input"
+          aria-label="Number Input, Enter guess between 0 and 100">
         <input id="guess-button" role="button" type="button" value="Guess" class="btn" aria-disabled="true" aria-label="Submit Your Guess"
           disabled>
         <input id="clear-button" role="button" type="button" value="Clear" class="btn" aria-label="Clear Your Guess" aria-disabled="true"

@@ -81,11 +81,39 @@ html {
   margin: 4rem auto 7rem;
 }
 
+.guess-form__min-max {
+  position: relative;
+  width: 50rem;
+  margin: 0 auto;
+  /* border: 1px solid blue; */
+  height: 8rem;
+}
+
+.guess-form__min-max--input {
+  display: inline-block;
+  width: 45%;
+  /* border: 1px solid red; */
+}
+
+.guess-form__min-max--input:first-of-type {
+  position: absolute;
+  left: 0;
+}
+
+.guess-form__min-max--input:last-of-type {
+  position: absolute;
+  right: 0;
+}
+
+.guess-form__user-input {
+  width: 50rem;
+}
+
 form input[type='number'] {
   margin: 0 auto;
   display: block;
   color: #757575;
-  width: 50rem;
+  /* width: 50rem; */
   margin-bottom: 5rem;
   height: 4.3rem;
   font-size: 2rem;

@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var formInput = document.querySelector('#form-input');
+  var formInput = document.querySelector('#user-input');
   var guessButton = document.querySelector('#guess-button');
   var guessForm = document.querySelector('#guess-form');
   var clearButton = document.querySelector('#clear-button');
