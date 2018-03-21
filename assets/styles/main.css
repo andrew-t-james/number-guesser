@@ -85,14 +85,13 @@ html {
   position: relative;
   width: 50rem;
   margin: 0 auto;
-  /* border: 1px solid blue; */
   height: 8rem;
+  display: none;
 }
 
 .guess-form__min-max--input {
   display: inline-block;
   width: 45%;
-  /* border: 1px solid red; */
 }
 
 .guess-form__min-max--input:first-of-type {

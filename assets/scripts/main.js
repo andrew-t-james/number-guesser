@@ -1,17 +1,25 @@
 'use strict';
 
 (function () {
-  var formInput = document.querySelector('#user-input');
+  var userGuessInput = document.querySelector('#user-input');
+  var minInput = document.querySelector('#min-input');
+  var maxInput = document.querySelector('#max-input');
   var guessButton = document.querySelector('#guess-button');
   var guessForm = document.querySelector('#guess-form');
   var clearButton = document.querySelector('#clear-button');
   var resetButton = document.querySelector('#reset-button');
-  var numberGuess = document.querySelector('#number-guess');
+  var userGuess = document.querySelector('#number-guess');
   var rangeGuess = document.querySelector('#range-guess');
   var announcement = document.querySelector('#announcement');
   var buttonList = document.querySelectorAll('button, input[type=button]');
-  var number = Math.floor(Math.random() * 100) + 1;
+  var minNumber = 1;
+  var maxNumber = 100;
+  var number = getRandomNumber(minNumber, maxNumber);
 
+  function getRandomNumber(min, max) {
+    // console.log(Math.floor(Math.random() * (max - min + 1)) + min);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
   /**
    * @function enableButtons
    * @description enables form buttons and reset button
@@ -36,7 +44,7 @@
 
   /**
    * @function clearText
-   * @param {DOElement} clears elements text from inputs inDom
+   * @param {DOMelement} clears elements text from inputs inDom
    */
   function clearText(element) {
     return element.innerText = '';
@@ -44,7 +52,7 @@
 
   /**
    * @function clearInput
-   * @param {DOElement} clears clears input elements text from inDom
+   * @param {DOMelement} clears clears input elements text from inDom
    */
   function clearInput(element) {
     return element.value = '';
@@ -52,7 +60,7 @@
 
   /**
    *  @function setText
-   * @param {DOElement} element from the DOM to set text on
+   * @param {DOMelement} element from the DOM to set text on
    * @param {String} text string to be set in the DOM
    */
   function setText(element, text) {
@@ -65,8 +73,8 @@
    */
   function resetGame() {
     setText(announcement, 'Guess a number between 1 and 100');
-    clearInput(formInput);
-    clearText(numberGuess);
+    clearInput(userGuessInput);
+    clearText(userGuess);
     clearText(rangeGuess);
     number = Math.floor(Math.random() * 100) + 1;
     disableButtons();
@@ -81,7 +89,7 @@
     // int used to clear Interval so that integer can be set and cleared on every win
     var clearIntervalID = setInterval(function () {
       setText(announcement, 'New Game begins in:');
-      setText(numberGuess, i);
+      setText(userGuess, i);
       i-- || clearInterval(clearIntervalID);
 
       if (i === -1) {
@@ -95,20 +103,24 @@
    * @description checks for win, if number matches guess winning message is displayed and game is rest
    */
   function checkWin() {
-    var guess = parseInt(formInput.value);
+    var guess = parseInt(userGuessInput.value);
     if (number === guess) {
-      clearInput(formInput);
+      clearInput(userGuessInput);
+      clearInput(minInput);
+      clearInput(maxInput);
       clearText(announcement);
-      setText(numberGuess, 'BOOM!');
+      setText(userGuess, 'BOOM!');
       clearText(rangeGuess);
       countDown(3);
     } else {
-      setText(numberGuess, 'Your last guess was');
-      setText(numberGuess, guess);
-      numberGuess.style.visibility = 'visible';
+      setText(userGuess, 'Your last guess was');
+      setText(userGuess, guess);
+      clearInput(minInput);
+      clearInput(maxInput);
+      userGuess.style.visibility = 'visible';
       // nested ternary to check if number is in range gives error if out of range other wise shows hints about guess
       rangeGuess.innerText = guess < 0 || guess > 100 || isNaN(guess) ? 'That guess of ' + guess + ' is invalid please enter a number from 0 to 100' : guess < number ? 'That is to low' : 'That is to high';
-      clearInput(formInput);
+      clearInput(userGuessInput);
     }
   }
 
@@ -120,16 +132,16 @@
 
   clearButton.addEventListener('click', function () {
     // on click clear input field and disable all appropriate buttons
-    formInput.value = '';
+    clearInput(userGuessInput);
     disableButtons();
   });
 
-  formInput.addEventListener('change', function () {
+  userGuessInput.addEventListener('change', function () {
     // on change event enable all buttons
     enableButtons();
   });
 
-  formInput.addEventListener('keypress', function (e) {
+  userGuessInput.addEventListener('keypress', function (e) {
     // prevent 'e' from being entered in number input
     if (e.which === 101) {
       e.preventDefault();
@@ -140,9 +152,11 @@
   guessForm.addEventListener('keypress', function (e) {
     // if user presses enter key check for win disable buttons and prevent default form behavior
     if (e.which === 13) {
+      console.log(minInput.value, maxInput.value, number);
       e.preventDefault();
       disableButtons();
       checkWin();
+      // call min max function here
     }
   });
 
