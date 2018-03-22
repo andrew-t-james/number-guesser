@@ -4,7 +4,6 @@
   var userGuessInput = document.querySelector('#user-input');
   var minInput = document.querySelector('#min-input');
   var maxInput = document.querySelector('#max-input');
-  var inputList = document.querySelectorAll('input[type=number]');
   var guessButton = document.querySelector('#guess-button');
   var guessForm = document.querySelector('#guess-form');
   var minMaxForm = document.querySelector('.guess-form__min-max');
@@ -14,11 +13,13 @@
   var rangeGuess = document.querySelector('#range-guess');
   var winCounter = document.querySelector('#win-count');
   var announcement = document.querySelector('#announcement');
-  var buttonList = document.querySelectorAll('button, input[type=button]');
+  var buttonList = document.querySelectorAll('button, input[type=button], input[type=submit]');
   var minNumber = 1;
   var maxNumber = 100;
   var wins = 2;
   var number = getRandomNumber(minNumber, maxNumber);
+
+  console.log('[number is...]', number);
 
   function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -137,19 +138,18 @@
     }
   }
 
+  // guessButton eventListeners to enable buttons and check for win
+  guessButton.addEventListener('change', enableButtons);
+  guessButton.addEventListener('change', checkWin);
 
-  guessButton.addEventListener('click', function () {
-    // on click check for a win and disable appropriate buttons
-    checkWin();
-    disableButtons();
-  });
-
+  //clearButton eventListeners to disenable buttons and check for win
+  clearButton.addEventListener('click', disableButtons);
   clearButton.addEventListener('click', function () {
     // on click clear input field and disable all appropriate buttons
     clearInput(userGuessInput);
-    disableButtons();
   });
 
+  // user change event for number
   userGuessInput.addEventListener('change', function () {
     // on change event enable all buttons
     enableButtons();
@@ -163,19 +163,19 @@
     enableButtons();
   });
 
-  guessForm.addEventListener('keypress', function (e) {
-    // if user presses enter key check for win disable buttons and prevent default form behavior
-    if (e.which === 13) {
-      e.preventDefault();
-      disableButtons();
-      checkWin();
-      // call min max function here
-    }
+  guessForm.addEventListener('keydown', disableButtons);
+  guessForm.addEventListener('submit', function (e) {
+    // on click check for a win and disable appropriate buttons
+    e.preventDefault();
+    checkWin();
   });
 
-  resetButton.addEventListener('click', function () {
-    // rests the game and disables all buttons
-    disableButtons();
-    resetGame();
+  resetButton.addEventListener('click', disableButtons);
+  resetButton.addEventListener('click', resetGame);
+
+  minMaxForm.addEventListerner('submit', function (e) {
+    e.preventDefault();
+    setNewRange();
   });
+
 })();

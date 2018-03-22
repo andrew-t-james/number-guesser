@@ -82,12 +82,13 @@ html {
 }
 
 .guess-form__min-max {
-  display: none;
+  /* display: none; */
+  border: 1px solid red;
   position: relative;
   width: 50rem;
   margin: 0 auto;
-  height: 8rem;
-  animation: fadeIn 4s;
+  height: 15rem;
+  /* animation: fadeIn 4s; */
 }
 
 @keyframes fadeIn {
@@ -124,7 +125,6 @@ form input[type='number'] {
   margin: 0 auto;
   display: block;
   color: #757575;
-  /* width: 50rem; */
   margin-bottom: 5rem;
   height: 4.3rem;
   font-size: 2rem;
