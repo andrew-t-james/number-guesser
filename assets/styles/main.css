@@ -82,13 +82,12 @@ html {
 }
 
 .guess-form__min-max {
-  /* display: none; */
-  border: 1px solid red;
+  display: none;
   position: relative;
   width: 50rem;
   margin: 0 auto;
   height: 15rem;
-  /* animation: fadeIn 4s; */
+  animation: fadeIn 4s;
 }
 
 @keyframes fadeIn {
@@ -112,9 +111,8 @@ html {
   left: 0;
 }
 
-.guess-form__min-max--input:last-of-type {
-  position: absolute;
-  right: 0;
+.guess-form__min-max--input:nth-of-type(2n) {
+  margin-left: 27.4rem;
 }
 
 .guess-form__user-input {

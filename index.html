@@ -21,22 +21,22 @@
     <section class="section-1">
       <div class="guess-form__min-max">
         <form action="#" id="min-max-form" role="form">
-          <input type="number" min="1" max="100" step="1" id="min-input" placeholder="Enter a Minimum" autocomplete="off" class="guess-form__min-max--input"
+          <input type="number" step="1" id="min-input" placeholder="Enter a Minimum" autocomplete="off" class="guess-form__min-max--input"
             aria-label="Enter a number for a minimum amount." required>
-          <input type="number" min="1" max="100" step="1" id="max-input" placeholder="Enter a Maximum" autocomplete="off" class="guess-form__min-max--input"
+          <input type="number" step="1" id="max-input" placeholder="Enter a Maximum" autocomplete="off" class="guess-form__min-max--input"
             aria-label="Enter a number for a maximum amount." required>
-          <input id="min-max-button" role="button" type="submit" value="Guess" class="btn" aria-disabled="true" aria-label="Submit Your Guess"
+          <input id="min-max-button" role="button" type="submit" value="Submit" class="btn" aria-disabled="true" aria-label="Submit Your New Range"
             disabled>
         </form>
       </div>
-      <!-- <form id="guess-form" role="form">
+      <form id="guess-form" role="form">
         <input type="number" min="1" max="100" step="1" id="user-input" placeholder="Enter your Guess" autocomplete="off" class="guess-form__user-input"
           aria-label="Number Input, Enter guess between 0 and 100" required>
         <input id="guess-button" role="button" type="submit" value="Guess" class="btn" aria-disabled="true" aria-label="Submit Your Guess"
           disabled>
         <input id="clear-button" role="button" type="button" value="Clear" class="btn" aria-label="Clear Your Guess" aria-disabled="true"
           disabled>
-      </form> -->
+      </form>
     </section>
     <section class="section-2">
       <p class="section-2__text--paragraph" role="status" id="announcement" aria-live="polite">Guess a number between 1 and 100</p>

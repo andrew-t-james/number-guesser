@@ -19,11 +19,17 @@
   var wins = 2;
   var number = getRandomNumber(minNumber, maxNumber);
 
-  console.log('[number is...]', number);
-
+  /**
+   *
+   * @function getRandomNumber generates a random number and returns that number
+   * @param {Number} min is type number used to set minimum value
+   * @param {Number} max is type number used to set maximum value
+   * @returns a new random number between the min and max value inclusive
+   */
   function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+
   /**
    * @function enableButtons
    * @description enables form buttons and reset button
@@ -76,7 +82,7 @@
    * @description resets game back to initial state
    */
   function resetGame() {
-    if (wins > 2) {
+    if (wins > 2 && wins < 4) {
       setText(announcement, 'Please Choose a New min and Max.');
     } else {
       setText(announcement, 'Guess a number between  ' + minNumber + ' and ' + maxNumber);
@@ -123,8 +129,9 @@
       setText(userGuess, 'BOOM!');
       setText(winCounter, wins);
       countDown(3);
-      if (wins > 2) {
+      if (wins > 2 && wins < 4) {
         minMaxForm.style.display = 'block';
+        guessForm.style.display = 'none';
       }
     } else {
       setText(userGuess, 'Your last guess was');
@@ -138,11 +145,29 @@
     }
   }
 
+  /**
+     * @function setLevelUp
+     * @description creates new max and min range for next level of the game
+     */
+  function setLevelUp() {
+    minNumber = parseInt(minInput.value);
+    maxNumber = parseInt(maxInput.value);
+    number = getRandomNumber(minNumber, maxNumber);
+    console.log(number);
+    minMaxForm.style.display = 'none';
+    guessForm.style.display = 'block';
+    setText(announcement, 'Your new Range is between ' + minNumber + ' and ' + maxNumber);
+    userGuessInput.setAttribute('min', minNumber);
+    userGuessInput.setAttribute('max', maxNumber);
+    clearInput(minInput);
+    clearInput(maxInput);
+  }
+
   // guessButton eventListeners to enable buttons and check for win
   guessButton.addEventListener('change', enableButtons);
   guessButton.addEventListener('change', checkWin);
 
-  //clearButton eventListeners to disenable buttons and check for win
+  //clearButton eventListeners to disable buttons and check for win
   clearButton.addEventListener('click', disableButtons);
   clearButton.addEventListener('click', function () {
     // on click clear input field and disable all appropriate buttons
@@ -150,11 +175,7 @@
   });
 
   // user change event for number
-  userGuessInput.addEventListener('change', function () {
-    // on change event enable all buttons
-    enableButtons();
-  });
-
+  userGuessInput.addEventListener('change', enableButtons);
   userGuessInput.addEventListener('keypress', function (e) {
     // prevent 'e' from being entered in number input
     if (e.which === 101) {
@@ -163,19 +184,26 @@
     enableButtons();
   });
 
+  // guessForm event listeners for disabling buttons and handling form submission
   guessForm.addEventListener('keydown', disableButtons);
   guessForm.addEventListener('submit', function (e) {
-    // on click check for a win and disable appropriate buttons
+    // on submit prevent default form behavior and check for a win
     e.preventDefault();
     checkWin();
   });
 
-  resetButton.addEventListener('click', disableButtons);
+  // resetButton Listeners to reset game and disable buttons
   resetButton.addEventListener('click', resetGame);
+  resetButton.addEventListener('click', disableButtons);
 
-  minMaxForm.addEventListerner('submit', function (e) {
+  // minInput maxInput Listeners to enable buttons on keydown
+  minInput.addEventListener('keydown', enableButtons);
+  maxInput.addEventListener('keydown', enableButtons);
+
+  // minMaxForm submit Listener to handel form submission
+  minMaxForm.addEventListener('submit', function (e) {
+    // on click prevent default form behavior and set new level
     e.preventDefault();
-    setNewRange();
+    setLevelUp();
   });
-
 })();
