@@ -90,6 +90,12 @@ html {
   animation: fadeIn 4s;
 }
 
+.guess-form__min-max--heading {
+  color: var(--dark-background);
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

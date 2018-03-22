@@ -16,9 +16,9 @@
   var buttonList = document.querySelectorAll('button, input[type=button], input[type=submit]');
   var minNumber = 1;
   var maxNumber = 100;
-  var wins = 2;
+  var wins = 0;
   var number = getRandomNumber(minNumber, maxNumber);
-
+  console.log('[initial number value...]', number);
   /**
    *
    * @function getRandomNumber generates a random number and returns that number
@@ -88,9 +88,12 @@
       setText(announcement, 'Guess a number between  ' + minNumber + ' and ' + maxNumber);
     }
     clearInput(userGuessInput);
+    clearInput(minInput);
+    clearInput(maxInput);
     clearText(userGuess);
     clearText(rangeGuess);
     number = getRandomNumber(minNumber, maxNumber);
+    console.log('[new number value...]', number);
     disableButtons();
   }
 
@@ -119,8 +122,6 @@
     var guess = parseInt(userGuessInput.value);
     if (number === guess) {
       wins++;
-      minNumber -= 10;
-      maxNumber += 10;
       clearInput(userGuessInput);
       clearInput(minInput);
       clearInput(maxInput);
@@ -129,6 +130,10 @@
       setText(userGuess, 'BOOM!');
       setText(winCounter, wins);
       countDown(3);
+      if (wins > 3) {
+        minNumber -= 10;
+        maxNumber += 10;
+      }
       if (wins > 2 && wins < 4) {
         minMaxForm.style.display = 'block';
         guessForm.style.display = 'none';
@@ -153,7 +158,7 @@
     minNumber = parseInt(minInput.value);
     maxNumber = parseInt(maxInput.value);
     number = getRandomNumber(minNumber, maxNumber);
-    console.log(number);
+    console.log('[level up number value...]', number);
     minMaxForm.style.display = 'none';
     guessForm.style.display = 'block';
     setText(announcement, 'Your new Range is between ' + minNumber + ' and ' + maxNumber);
@@ -188,6 +193,7 @@
   guessForm.addEventListener('keydown', disableButtons);
   guessForm.addEventListener('submit', function (e) {
     // on submit prevent default form behavior and check for a win
+    disableButtons();
     e.preventDefault();
     checkWin();
   });
